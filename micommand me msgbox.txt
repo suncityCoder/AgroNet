@@ -1,0 +1,63 @@
+Private Sub MICOMMAND_Click()
+
+    Dim filePath As String
+    Dim conn As Object ' Σύνδεση με το Excel μέσω ADO
+    Dim rs As Object
+    Dim sql As String
+    Dim excelFilePath As String
+    Dim result As String
+    
+    ' Άνοιγμα παραθύρου διαλόγου για επιλογή Excel
+    Dim fileDialog As Object
+    Set fileDialog = Application.fileDialog(3) ' 3 = File Picker Dialog
+
+    fileDialog.Title = "Άνοιγμα αρχείου Excel"
+    fileDialog.Filters.Clear
+    fileDialog.Filters.Add "Αρχεία Excel", "*.xls; *.xlsx"
+
+    If fileDialog.Show = -1 Then ' Αν ο χρήστης επιλέξει αρχείο
+        filePath = fileDialog.SelectedItems(1)
+    Else
+        MsgBox "Δεν επιλέξατε αρχείο", vbExclamation
+        Exit Sub
+    End If
+
+    If filePath = "False" Then Exit Sub ' Αν δεν επιλέχθηκε αρχείο, σταμάτα
+
+    ' Δημιουργία σύνδεσης με το Excel
+    Set conn = CreateObject("ADODB.Connection")
+    Set rs = CreateObject("ADODB.Recordset")
+
+    ' Σύνδεση με το Excel
+    conn.Open "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & filePath & ";Extended Properties=""Excel 12.0;HDR=YES;IMEX=1"";"
+
+    ' Εκτέλεση SQL Query για ανάκτηση δεδομένων από το Excel
+    sql = "SELECT ERP, DESC, QTY FROM [ΆΙΚΤΩΝ ΣΤΟΙΧΕΙΩΝ$] WHERE ERP <> '-' AND DESC IS NOT NULL AND QTY IS NOT NULL"
+
+    rs.Open sql, conn
+
+    ' Εάν υπάρχουν δεδομένα
+    If Not rs.EOF Then
+        result = "Τα δεδομένα είναι:" & vbCrLf ' Προετοιμασία μηνύματος για εμφάνιση δεδομένων
+        
+        ' Επανάληψη μέσω του Recordset και αποθήκευση δεδομένων
+        Do While Not rs.EOF
+            result = result & "ERP: " & rs.Fields("ERP").Value & ", " & _
+                        "Περιγραφή: " & rs.Fields("DESC").Value & ", " & _
+                        "Ποσότητα: " & rs.Fields("QTY").Value & vbCrLf
+            rs.MoveNext ' Μετάβαση στην επόμενη εγγραφή
+        Loop
+        
+        ' Εμφάνιση αποτελεσμάτων στον χρήστη
+        MsgBox result, vbInformation, "Excel Δεδομένα"
+    Else
+        MsgBox "Δεν βρέθηκαν δεδομένα.", vbExclamation
+    End If
+
+    ' Κλείσιμο σύνδεσης και recordset
+    rs.Close
+    conn.Close
+    Set rs = Nothing
+    Set conn = Nothing
+
+End Sub
