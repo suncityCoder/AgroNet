@@ -32,7 +32,7 @@ Private Sub MICOMMAND_Click()
     conn.Open "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & filePath & ";Extended Properties=""Excel 12.0;HDR=YES;IMEX=1"";"
 
     ' Εκτέλεση SQL Query για ανάκτηση δεδομένων από το Excel
-    sql = "SELECT ERP, DESC, QTY FROM [ΆΙΚΤΩΝ ΣΤΟΙΧΕΙΩΝ$] WHERE ERP <> '-' AND DESC IS NOT NULL AND QTY IS NOT NULL"
+    sql = "SELECT ERP, DESC, QTY FROM [ΑΝΑΛΩΣΗ ΥΛΙΚΩΝ ΣΥΝΟΛΟ$] WHERE ERP <> '-' AND DESC IS NOT NULL AND QTY IS NOT NULL"
 
     rs.Open sql, conn
 
@@ -61,3 +61,4 @@ Private Sub MICOMMAND_Click()
     Set conn = Nothing
 
 End Sub
+
