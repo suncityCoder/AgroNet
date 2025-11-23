@@ -1,0 +1,19 @@
+1. Μεταφορά φακέλου Agronet στο %APPDATA%
+
+2. Ρύθμιση path στο Trust Center στο %APPDATA%\Agronet (File -> Options -> Trust Center -> Trusted Locations + Subfolders)
+
+3. Μεταφορά του νέου αρχείου BE και ρύθμιση του νέου path (External Data -> Linked Table Manager)
+	BE Old Path: \\ARTESRV\ARTE_Shared\Agronet\AgroNet_1.4BE.accdb
+
+4. Ρύθμιση ico του AgroNet στο %APPDATA%\Agronet\AgroNetICO.ico (File -> Options -> Current Database -> Application Icon)
+
+5. Απενεργοποίηση του Shift από VBA με Ctrl + G "SetBypassKey True"
+
+5. Save As .accde & διαγραφή .accdb
+
+6. Μεταφορά και ρύθμιση της συντόμευσης στην επιφάνεια εργασίας
+	Shortcut Path 1: %APPDATA%\Agronet\AgroNet_1.4.accde
+	Shortcut Path 2: %APPDATA%\Agronet
+	ICO Path: %APPDATA%\Agronet\AgroNetICO.ico
+
+7. Τελικός έλεγχος
