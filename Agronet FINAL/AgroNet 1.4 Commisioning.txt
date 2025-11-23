@@ -12,9 +12,10 @@
 6. Save As .accde & διαγραφή .accdb
 
 7. Μεταφορά και ρύθμιση της συντόμευσης στην επιφάνεια εργασίας
-	Shortcut Path 1: %APPDATA%\Agronet\AgroNet_1.4.accde
+	Shortcut Path 1: %APPDATA%\Agronet\AgroNet_1.4.accde (ΠΡΟΣΟΧΗ στο .accdb ή .accde)
 	Shortcut Path 2: %APPDATA%\Agronet
 	ICO Path: %APPDATA%\Agronet\AgroNetICO.ico
 
 
 8. Τελικός έλεγχος
+
